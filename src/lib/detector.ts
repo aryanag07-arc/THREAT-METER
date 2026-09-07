@@ -172,14 +172,15 @@ export function analyze(text: string): Analysis {
         weight: 6,
       });
     }
-    if (/[A-Z]{6,}/.test(input.replace(/\s/g, ""))) {
+    if (/\b[A-Z]{6,}\b/.test(input)) {
       signals.push({
         category: "urgency",
         label: "Shouting capitals",
-        match: "ALL CAPS",
+        match: input.match(/\b[A-Z]{6,}\b/)![0],
         weight: 4,
       });
     }
+
   }
 
   const byCat = new Map<Category, number>();
